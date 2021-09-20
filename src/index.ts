@@ -7,7 +7,7 @@ interface rpcCall {
   params: any[];
 }
 
-let blockList: string[] = ['']
+let blockList: string[] = []
 if (process.env.METHOD_BLOCK_LIST) {
   blockList = process.env.METHOD_BLOCK_LIST.split(',').map(method => method.trim())
 }
@@ -15,6 +15,8 @@ if (process.env.METHOD_BLOCK_LIST) {
 const wss = new Server({
   port: parseInt(process.env.PORT || '8080'),
 });
+
+console.log(`Starting server on ${wss.options.port} with blocklist ${blockList.join(',')}`)
 
 wss.on('connection', (socket) => {
   console.log('New connection')
