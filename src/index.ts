@@ -73,7 +73,7 @@ wss.on('connection', (socket, req) => {
       await waitForTarget()
       targetClient.close()
       targetClosed = true
-      logger.info(`Dropped connection because of blocklist`)
+      logger.logDrop(ip)
       return
     }
 

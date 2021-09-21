@@ -3,7 +3,8 @@ export enum LogLevel {
   INFO,
   WARN,
   ERROR,
-  ACCESS
+  ACCESS,
+  DROP
 }
 
 export default class Logger {
@@ -31,6 +32,10 @@ export default class Logger {
 
   public logMethodCall(ip: string, method: string): void {
     this.log(LogLevel.ACCESS, `${ip} ${method}`)
+  }
+
+  public logDrop(ip: string): void {
+    this.log(LogLevel.DROP, ip)
   }
 
   private log(level: LogLevel, message: any, ...additionalParams: any[]): void {
